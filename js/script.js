@@ -33,10 +33,16 @@ const renderPokemon= async(pokemon) => {
 
 form.addEventListener('submit', (event) =>{
     event.preventDefault();
-    renderPokemon(input.value.toLowerCase());
+
+    let pokemon = Number(input.value.toLowerCase());
+
+    if(pokemon > 1025){
+        pokemon = ((pokemon - 1) % 1025) + 1;
+    }
+
+    renderPokemon(pokemon);
     input.value = '';
 });
-
 buttonPrev.addEventListener('click', () =>{
     if(searchPokemon >1){
         searchPokemon-=1;
